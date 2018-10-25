@@ -46,6 +46,7 @@ gradlew.bat clean checkstyle过程中，会报Uninitialized object exists on bac
 版本，两者里面的存在区别，所以会报错。
 
 要解决这个问题，需要先勾选Project Structure - SDK location - JDK loaction中的Use embedded JDk,
+
 ![如图所示](/img/temp.png "如图所示")
 
 其次，在Terminal中输入命令 set JAVA_HOME=jdklocation , jdklocation等于刚才Project Structure中的
