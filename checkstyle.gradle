@@ -1,0 +1,26 @@
+apply plugin: 'checkstyle'
+
+checkstyle {
+    toolVersion '8.13'
+    showViolations true
+}
+
+task Checkstyle(type: Checkstyle) {
+    configFile file("${project.rootDir}/config/quality/checkstyle/CheckStyleRules.xml")
+    source 'src/main/java'
+    include '**/*.java'
+    exclude '**/gen/**'
+    exclude "**/test/**"
+    exclude '**/R.java'
+    exclude '**/BuildConfig.java'
+
+    reports {
+        xml.enabled false
+        html.enabled true
+        html {
+            destination file("${rootProject.buildDir}/html/checkstyle.html")
+        }
+    }
+
+    classpath = files()
+}
