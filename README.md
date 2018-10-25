@@ -40,3 +40,15 @@ PS：CheckStyleRules.xml主要检查的是一些Android开发过程中的书写�
 其中的.java文件，目前好像还不支持检查相关的xml文件。
 PS：后续将对findbugs和pmd相关检查进行添加，敬请期待。
 
+PS:在测试过程中发现一个问题，就是对于新版的AndroidStudio,3.1版本以上，在使用命令
+gradlew.bat clean checkstyle过程中，会报Uninitialized object exists on backward branch 70错误，
+原因是因为AndroidStudio3.1以上会使用AS自带的jdk版本，而在使用gradle命令的时候，会使用系统的JAVA_HOME的
+版本，两者里面的存在区别，所以会报错。
+
+要解决这个问题，需要先勾选Project Structure - SDK location - JDK loaction中的Use embedded JDk,
+![如图所示](/img/temp.png "如图所示")
+
+其次，在Terminal中输入命令 set JAVA_HOME=jdklocation , jdklocation等于刚才Project Structure中的
+jdklocation位置，然后在执行相关的gradle命令即可。(这个命令在Terminal中执行一次即可，会在当前的窗口临时赋值
+给JAVA_HOME，不影响系统变量中的JAVA_HOME的值。)
+
